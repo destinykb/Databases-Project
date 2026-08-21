@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leave a Review</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            margin: 40px;
+        }
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+            text-align: left;
+        }
+        input[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leave a Review for {{ artist }}</h1>
+
+    <form method="POST" action="{{ url_for('leave_review') }}">
+    <input type="hidden" name="artist" value="{{ artist }}">
+
+    <label for="email">Your Email:</label>
+    <input type="email" name="email" placeholder="Enter your email" required>
+
+<label for="rating">Rating (0.0–10.0):</label>
+<input type="number" name="rating" min="0" max="10" step="0.1" required>
+
+
+   <label for="reviews">Your Comment:</label>
+    <textarea name="reviews" rows="5" required></textarea>
+
+    <button type="submit">Submit Review</button>
+</form>
+
+    <br>
+    <a href="{{ url_for('ratings', artist=artist) }}">← Back to Ratings</a>
+</body>
+</html>

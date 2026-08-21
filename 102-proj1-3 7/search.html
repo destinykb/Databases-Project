@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Concert Search</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      margin: 30px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 32px;
+    }
+
+
+    .performer-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 20px auto;
+      width: 60%;
+      background-color: #fafafa;
+    }
+    .performer-card img {
+      border-radius: 10px;
+      margin-bottom: 15px;
+      max-width: 200px;
+      height: auto;
+    }
+    .performer-card h2 {
+      margin: 10px 0 5px 0;
+      font-size: 26px;
+    }
+    .performer-card p {
+      margin: 5px 0;
+      font-size: 16px;
+      text-align: center;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 30px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 6px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+
+
+
+  </style>
+</head>
+
+<body>
+  <h1>CONCERT RESULTS</h1>
+
+  <div style="text-align: center; margin-top: 15px;">
+  <a href="/" style="
+    display: inline-block;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;">
+    Back to Search
+  </a>
+</div>
+
+  {% if query %}
+    <p>Results for "<strong>{{ query }}</strong>":</p>
+  {% endif %}
+
+  <!-- Performer info card -->
+  {% if performer_info %}
+    <div class="performer-card">
+      <img src="{{ performer_info.image_url }}" alt="{{ performer_info.name }}">
+      <h2>{{ performer_info.name }}</h2>
+      <p><strong>Rating:</strong> {{ performer_rating }}/10</p>
+      <p>{{ performer_info.bio }}</p>
+    </div>
+  {% endif %}
+
+  <!-- Concert results -->
+  {% if results %}
+    <table>
+      <tr>
+        {% if not performer_info %}
+          <th>Artist</th>
+        {% endif %}
+        <th>Venue</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Tickets Available</th>
+        <th>Price</th>
+      </tr>
+      {% for row in results %}
+        <tr>
+          {% if performer_info %}
+            <!-- Performer info already displayed above -->
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+
+            <td>
+              {% if row[5] == 0 %}
+                <span style="color: black; font-weight: bold;">No tickets available for purchase</span>
+              {% else %}
+                <a href="{{ url_for('checkout',
+                                     artist=performer_info.name,
+                                     venue=row[0],
+                                     city=row[1],
+                                     country=row[2],
+                                     date=row[3],
+                                     time=row[4],
+                                     tickets=row[5],
+                                     price=row[6]) }}">
+                  <button>Buy</button>
+                </a>
+
+                {% endif %}
+            <td>
+          {% else %}
+            <!-- Include artist column when performer_info not shown -->
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>{{ row[7] }}</td>
+            <td>
+              {% if row[6] == 0 %}
+                <span style="color: black; font-weight: bold;">No tickets available for purchase</span>
+              {% else %}
+                <a href="{{ url_for('checkout',
+                                     artist=row[0],
+                                     venue=row[1],
+                                     city=row[2],
+                                     country=row[3],
+                                     date=row[4],
+                                     time=row[5],
+                                     tickets=row[6],
+                                     price=row[7]) }}">
+                  <button>Buy</button>
+                </a>
+              {% endif %}
+            </td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No results found.</p>
+{% endif %}
+</body>
+</html>

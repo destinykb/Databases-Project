@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FIND-A-CONCERT</title>
+
+    <style>
+        /* Changes apply to the entire body */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            background-color: #f8f8f8;
+        }
+
+        /* Heading style */
+        h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-top: 40px;
+        }
+
+        /* Paragraph style */
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Search bar styling */
+        input[type="text"] {
+            width: 90%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            outline: none;
+            color: #333;
+        }
+
+        input[type="text"]::placeholder {
+            color: #aaa; /* light grey placeholder text */
+        }
+
+        input[type="text"]:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+        }
+
+        /* Button style */
+        button {
+            font-size: 30px;
+            background-color: #549bff;
+            color: white;
+            padding: 15px 90px;
+            border: none;
+            border-radius: 18px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Link style */
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>FIND-A-CONCERT!</h1>
+    <form action="/search" method="get">
+        <input
+            type="text"
+            name="query"
+            placeholder="Enter artist, venue, date (YYYY-MM-DD), city, or country"
+            required
+        >
+    </form>
+    <p>Your ultimate destination to discover live music events near you!</p>
+
+    <a href="{{ url_for('ratings') }}">
+    <button>Rate an Artist</button>
+</a>
+</body>
+</html>

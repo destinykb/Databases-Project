@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artist Ratings</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            margin: 40px;
+        }
+        form {
+            margin-bottom: 30px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 18px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .rating-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px 25px;
+            margin: 15px auto;
+            width: 90%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .rating-left {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .rating-center {
+            font-size: 20px;
+            color: #007BFF;
+        }
+        .rating-right {
+            color: #666;
+            font-size: 16px;
+        }
+        .artist-name {
+            font-size: 30px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .average-rating-box {
+            display: inline-block;
+            background-color: #73b5f6;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Artist Ratings</h1>
+
+<form action="{{ url_for('ratings') }}" method="get">
+    <input type="text" name="artist" placeholder="Search by artist">
+    <button type="submit">Search</button>
+
+    <a href="{{ url_for('my_reviews') }}"
+       style="display: inline-block; background-color: #6c757d; color: white; padding: 10px 20px;
+              border-radius: 6px; text-decoration: none; font-size: 16px; margin-left: 10px;">
+       My Reviews
+    </a>
+</form>
+
+{% if ratings %}
+    <h2 class="artist-name">{{ ratings[0].artist }}</h2>
+
+    {% if average_rating %}
+        <div class="average-rating-box">
+            Average Rating: {{ average_rating }}/10
+        </div>
+    {% endif %}
+
+    <a href="{{ url_for('leave_review') }}?artist={{ ratings[0].artist }}"
+       style="display: inline-block; background-color: #28a745; color: white; padding: 10px 20px;
+              border-radius: 6px; text-decoration: none; font-size: 16px; margin-bottom: 20px;">
+       + Leave a Review
+    </a>
+
+    {% for r in ratings %}
+        <div class="rating-card">
+            <div class="rating-left">{{ r.customer }}</div>
+            <div class="rating-center">⭐ {{ r.rating }}</div>
+            <div class="rating-right">{{ r.date }} {{ r.time }}</div>
+
+            {% if r.reviews %}
+                <div style="width: 100%; margin-top: 5px; font-style: italic; color: #555;">
+                    "{{ r.reviews }}"
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No ratings found.</p>
+{% endif %}
+</body>
+</html>

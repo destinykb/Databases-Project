@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CHECKOUT</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-top: 40px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        form {
+            display: inline-block;
+            text-align: left;
+            background-color: white;
+            padding: 25px 40px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 12px;
+            color: #2c3e50;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #6ea8fe;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 25px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5a9afc;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CHECKOUT</h1>
+
+    <p><strong>Artist:</strong> {{ artist }}</p>
+    <p><strong>Venue:</strong> {{ venue }}</p>
+    <p><strong>City:</strong> {{ city }}</p>
+    <p><strong>Country:</strong> {{ country }}</p>
+    <p><strong>Date:</strong> {{ date }}</p>
+    <p><strong>Time:</strong> {{ time }}</p>
+    <p><strong>Tickets Available:</strong> {{ tickets }}</p>
+    <p><strong>Price per Ticket:</strong> ${{ price }}</p>
+    <p><strong>Ticket Quantity:</strong> {{ ticket_quantity }}</p>
+    <p><strong>Total Price:</strong> $<span id="display_price">{{ total_price }}</span></p>
+
+
+
+    <!-- Checkout Form -->
+    <form action="{{ url_for('confirmation') }}" method="POST">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="cc_number">Credit Card Number (No Spaces):</label>
+        <input type="number" id="cc_number" name="cc_number" required>
+        </select>
+
+        <input type="hidden" name="artist" value="{{ artist }}">
+        <input type="hidden" name="venue" value="{{ venue }}">
+        <input type="hidden" name="city" value="{{ city }}">
+        <input type="hidden" name="country" value="{{ country }}">
+        <input type="hidden" name="date" value="{{ date }}">
+        <input type="hidden" name="time" value="{{ time }}">
+        <input type="hidden" name="tickets" value="{{ tickets }}">
+        <input type="hidden" name="price" value="{{ price }}">
+        <input type="hidden" name="ticket_quantity" value="{{ ticket_quantity }}">
+        <input type="hidden" name="num_tix_avail" value="{{ num_tix_avail }}">
+
+        <button type="submit">Confirm Purchase</button>
+
+    </form>
+
+    <a href="/">Back to Search</a>
+
+
+
+</body>
+</html>
