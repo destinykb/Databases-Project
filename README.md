@@ -1,9 +1,6 @@
 Destiny Brewington
 Divya Shanmugam
 
-PostgreSQL Account: dkb2140
-Application URL: http://34.23.52.188:8111/
-
 Implementations: 
 - Users can search artists, venues, city, country, or date and receive resulting concerts related to the respective filter
 - Users can "purchase" a ticket (or multiple) for a specific concert
