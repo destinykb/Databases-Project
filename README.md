@@ -1,6 +1,8 @@
 Destiny Brewington
 Divya Shanmugam
 
+Fall 2025, Intro to Databases, Columbia University
+
 Implementations: 
 - Users can search artists, venues, city, country, or date and receive resulting concerts related to the respective filter
 - Users can "purchase" a ticket (or multiple) for a specific concert
