@@ -30,8 +30,8 @@ a user posts or deletes a rating the Ratings table is updated and the average_ra
 table. I think this function of our application is interesting because it adds an interactive aspect to the overall site
 that enables users to repeatedly visit and interact with the site over time.
 
-This repo contains html files for the webfront of the Find-A-Concert Application that returns upcoming concerts based on user parameters (artist, venue, city, country, or date)
-ChatGPT was used to improve the UI, debug Flask, understand how Flask interacts with html files, and understand error messages
+This repo contains html files for the webfront of the Find-A-Concert Application that returns upcoming concerts based on user parameters (artist, venue, city, country, or date).
+ChatGPT was used to improve the UI, debug Flask, understand how Flask interacts with html files, and understand error messages.
 
 Prompt examples:
 1. how does the server interact with the html files?
