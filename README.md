@@ -3,6 +3,9 @@ Divya Shanmugam
 
 Fall 2025, Intro to Databases, Columbia University
 
+Schema:
+<img width="1999" height="1545" alt="image" src="https://github.com/user-attachments/assets/6980c0e7-e52d-4993-9378-8d1fd0e73ede" />
+
 Implementations: 
 - Users can search artists, venues, city, country, or date and receive resulting concerts related to the respective filter
 - Users can "purchase" a ticket (or multiple) for a specific concert
@@ -39,7 +42,4 @@ Prompt examples:
 3. what is a value bind parameter?
 4. how would I create a search bar and drop-down in html?
 5. how do I create a button in html
-
-Schema:
-<img width="1999" height="1545" alt="image" src="https://github.com/user-attachments/assets/6980c0e7-e52d-4993-9378-8d1fd0e73ede" />
 
